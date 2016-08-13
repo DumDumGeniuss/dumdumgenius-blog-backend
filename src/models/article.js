@@ -6,6 +6,7 @@ let ArticleSchema = new Schema({
 	title: String,
 	content: String,
 	category: String,
+	sequence: Number,
 	create_at: Date,
 	update_at: Date
 });

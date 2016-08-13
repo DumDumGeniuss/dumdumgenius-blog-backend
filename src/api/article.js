@@ -3,8 +3,12 @@ import Article from '../models/article';
 
 let routes = Router();
 
+/*
+GET /articles
+*/
 routes.get('/', (req, res) => {
-	Article.find((err, articles) => {
+	let query = req.query || {}
+	Article.find(query, (err, articles) => {
 		if(err) {
 			res.send(err);
 		}
@@ -16,12 +20,17 @@ routes.get('/', (req, res) => {
 	});
 });
 
+/*
+POST /articles
+*/
 routes.post('/', (req, res) => {
+	console.log(req.body);
 	let article = new Article();
 	let data = req.body;
 	for(var key in data) {
 		article[key] = data[key];
 	}
+	console.log(article);
 	article.save((err, article) => {
 		if(err) {
 			res.send(err);
@@ -34,6 +43,9 @@ routes.post('/', (req, res) => {
 	});
 });
 
+/*
+GET /articles/:id
+*/
 routes.get('/:id', (req, res) => {
 	Article.findById(req.params.id, (err, article) => {
 		if(err) {
@@ -47,6 +59,9 @@ routes.get('/:id', (req, res) => {
 	});
 });
 
+/*
+PUT /articles/:id
+*/
 routes.put('/:id', (req, res) => {
 	Article.findById(req.params.id, (err, article) => {
 		if(err) {
@@ -70,6 +85,9 @@ routes.put('/:id', (req, res) => {
 	});
 });
 
+/*
+DELETE /articles/:id
+*/
 routes.delete('/:id', (req, res) => {
 	Article.remove({
 		_id: req.params.id
@@ -81,6 +99,23 @@ routes.delete('/:id', (req, res) => {
 			status: 'success',
 			message: 'article delete success!',
 			data: article
+		});
+	});
+});
+
+/*
+GET all categories
+*/
+routes.get('/info/categories', (req, res) => {
+	Article.collection
+		.distinct("category",  (err, articles) => {
+		if(err) {
+			res.send(err);
+		}
+		res.json({
+			status: 'success',
+			message: 'articles query success!',
+			data: articles
 		});
 	});
 });

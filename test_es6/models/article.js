@@ -12,6 +12,7 @@ export default (testServer, should) => {
 				title: 'ready',
 				content: 'to',
 				category: 'delete',
+				sequence: 1,
 				create_at: new Date(),
 				update_at: new Date()
 			});
@@ -36,9 +37,11 @@ export default (testServer, should) => {
           			res.body.data[0].should.have.property('title');
           			res.body.data[0].should.have.property('content');
           			res.body.data[0].should.have.property('category');
+          			res.body.data[0].should.have.property('sequence');
 					res.body.data[0].title.should.equal('ready');
 					res.body.data[0].content.should.equal('to');
 					res.body.data[0].category.should.equal('delete');
+          			res.body.data[0].sequence.should.equal(1);
 					done();
 				});
 		});
@@ -48,6 +51,7 @@ export default (testServer, should) => {
 					title: 'hello',
 					content: 'world',
 					category: '!',
+					sequence: 2,
 					create_at: new Date(),
 					update_at: new Date()
 				})
@@ -59,9 +63,11 @@ export default (testServer, should) => {
           			res.body.data.should.have.property('title');
           			res.body.data.should.have.property('content');
           			res.body.data.should.have.property('category');
+          			res.body.data.should.have.property('sequence');
 					res.body.data.title.should.equal('hello');
 					res.body.data.content.should.equal('world');
 					res.body.data.category.should.equal('!');
+					res.body.data.sequence.should.equal(2);
 					done();
 				});
 		});
@@ -74,9 +80,11 @@ export default (testServer, should) => {
           			res.body.data.should.have.property('title');
           			res.body.data.should.have.property('content');
           			res.body.data.should.have.property('category');
+          			res.body.data.should.have.property('sequence');
       				res.body.data.title.should.equal('ready');
       				res.body.data.content.should.equal('to');
       				res.body.data.category.should.equal('delete');
+					res.body.data.sequence.should.equal(1);
 					done();
 				});
 		});
@@ -86,6 +94,7 @@ export default (testServer, should) => {
 					title: 'aloha',
 					content: 'again',
 					category: '~',
+					sequence: 2,
 					update_at: new Date()
 				})
 				.end((err, res) => {
@@ -95,9 +104,11 @@ export default (testServer, should) => {
           			res.body.data.should.have.property('title');
           			res.body.data.should.have.property('content');
           			res.body.data.should.have.property('category');
+          			res.body.data.should.have.property('sequence');
       				res.body.data.title.should.equal('aloha');
       				res.body.data.content.should.equal('again');
       				res.body.data.category.should.equal('~');
+					res.body.data.sequence.should.equal(2);
       				res.body.data._id.should.equal(article_0._id + '');
 					done();
 				});
