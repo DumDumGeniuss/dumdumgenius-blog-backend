@@ -45,6 +45,7 @@ export default (testServer, should) => {
 					done();
 				});
 		});
+
 		it('POST /articles', (done) => {
 			testServer.post('/api/articles')
 				.send({
