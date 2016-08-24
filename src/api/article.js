@@ -8,7 +8,7 @@ GET /articles
 */
 routes.get('/', (req, res) => {
 	let query = req.query || {}
-	Article.find(query, (err, articles) => {
+	Article.find(query).sort('sequence').exec( (err, articles) => {
 		if(err) {
 			res.send(err);
 		} else {
