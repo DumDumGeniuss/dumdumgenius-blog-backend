@@ -2,5 +2,6 @@ export default {
 	port: 9000,
 	bodyLimit: "100kb",
 	corsHeaders: ["Link"],
-	mongodbUrl: "mongodb://localhost:27017/blog_dev"
+	mongodbUrl: "mongodb://localhost:27017/blog_dev",
+	drawingPath: "public/drawings"
 };
